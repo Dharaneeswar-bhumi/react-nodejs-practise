@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  node-app:
+    #build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    #specifically for windows below command needs to be added for React app
+    environment:
+     - CHOKIDAR_USEPOLLING=true
+     - CI=true
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules 
+      - .:/home/node/app
+  # tests:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   environment:
+  #    - CHOKIDAR_USEPOLLING=true
+  #    - CI=true
+  #   volumes:
+  #     - home/node/app/node_modules
+  #     - .:/homr/node/app/
+  #   command: ["npm", "run", "test"]    
+
